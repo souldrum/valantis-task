@@ -32,7 +32,7 @@ export const ProductList: React.FC = () => {
 
   return (
     <>
-      <div className="flex justify-center lg:justify-between sticky top-0 z-10 bg-surface container mx-auto gap-4 flex-wrap animate-appear">
+      <div className="flex justify-center xl:justify-between sticky top-0 z-10 bg-surface container mx-auto gap-4 flex-wrap animate-appear">
         <Filter
           currentName={filterName}
           onNameChange={setFilterName}
