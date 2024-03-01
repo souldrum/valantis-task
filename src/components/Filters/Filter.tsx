@@ -4,7 +4,7 @@ import { Button } from "../Button/Button";
 import { Select } from "../Select/Select";
 import { BrandSelector } from "./BrandSelector";
 import { PriceSelector } from "./PriceSelector";
-import { ProductInput } from "./ProductInput";
+import { ProductNameSearch } from "./ProductNameSearch";
 
 type FilterProps = {
   currentName: string;
@@ -28,7 +28,7 @@ export const Filter: React.FC<FilterProps> = ({
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 flex-wrap justify-center px-2">
       <Select name="filterName" value={currentName} onChange={handleSelect}>
         <option value="" disabled>
           Отфильтровать
@@ -37,9 +37,13 @@ export const Filter: React.FC<FilterProps> = ({
         <option value="price">По цене</option>
         <option value="product">По названию</option>
       </Select>
+
       {currentName === "brand" && <BrandSelector onChange={onValueChange} />}
       {currentName === "price" && <PriceSelector onChange={onValueChange} />}
-      {currentName === "product" && <ProductInput onChange={onValueChange} />}
+      {currentName === "product" && (
+        <ProductNameSearch onChange={onValueChange} />
+      )}
+
       {currentName && (
         <Button
           className="animate-appear"

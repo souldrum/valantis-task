@@ -21,8 +21,8 @@ export const Pagination: React.FC<PaginationProps> = ({
   itemsCount,
 }) => {
   return (
-    <div className="flex flex-col gap-2 justify-center items-center p-2">
-      <div className="flex gap-2 items-center">
+    <div className="flex flex-col gap-1 sm:gap-2 justify-center items-center p-2">
+      <div className="flex gap-1 sm:gap-2 items-center">
         <Button color="surface" onClick={() => setPage(0)} disabled={page <= 0}>
           <HiChevronDoubleLeft className="h-3 w-3" />
         </Button>
@@ -35,7 +35,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           <HiChevronLeft className="h-3 w-3" />
         </Button>
 
-        <span className="text-primary">
+        <span className="text-primary text-body sm:text-body-lg">
           {page + 1} / {pagesCount}
         </span>
         <Button

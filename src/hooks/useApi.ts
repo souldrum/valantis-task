@@ -44,7 +44,7 @@ export const useFilteredItems = (filter: FilterParams = {}, page = 0) => {
     placeholderData: keepPreviousData,
   });
 
-  return { result, pagesCount };
+  return { result, pagesCount, error: filteredIds.error ?? result.error };
 };
 
 export const useBrands = () => {

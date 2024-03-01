@@ -15,9 +15,7 @@ export const Footer: React.FC = () => {
         <a
           key={href}
           title={title}
-          className={cn(
-            !isMobile() && "hover:text-outline dark:hover:text-dark-outline"
-          )}
+          className={cn(!isMobile() && "hover:text-primary-op-70")}
           href={href}
           target={target || "_blank"}
         >

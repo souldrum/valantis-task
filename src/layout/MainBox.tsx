@@ -1,6 +1,5 @@
 import cn from "classnames";
 import React from "react";
-import { isMobile } from "../isMobile/isMobile";
 
 export const MainBox: React.FC<
   React.PropsWithChildren<{ className?: string }>
@@ -8,9 +7,8 @@ export const MainBox: React.FC<
   return (
     <div
       className={cn(
-        "bg-surface-container-lowest dark:bg-dark-surface-container p-4 shadow-elevation-1 animate-appear",
-        className,
-        isMobile() ? "rounded-lg" : "rounded-3xl"
+        "bg-surface-container-lowest dark:bg-dark-surface-container p-4 shadow-elevation-1 animate-appear rounded-lg sm:rounded-3xl",
+        className
       )}
     >
       {children}

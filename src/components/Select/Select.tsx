@@ -12,7 +12,7 @@ export const Select: React.FC<React.PropsWithChildren<SelectProps>> = ({
     <div className="pb-2 border-outline-variant border-b w-max animate-appear leading-9">
       <select
         name={name}
-        className="py-2 px-3 w-max outline-none bg-transparent text-primary"
+        className="py-2 px-3 w-max outline-none bg-transparent text-primary min-w-input"
         value={value}
         onChange={onChange}
       >

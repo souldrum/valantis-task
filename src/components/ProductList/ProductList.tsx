@@ -1,68 +1,62 @@
 import cn from "classnames";
 import React from "react";
 import { PulseLoader } from "react-spinners";
-import { useProductList } from "../../hooks/useProductList";
-import { isMobile } from "../../isMobile/isMobile";
+import { useFilteredItems } from "../../hooks/useApi";
+import { ProductFields } from "../../services/valantisService.types";
+import { ErrorBox } from "../ErrorBox/ErrorBox";
 import { Filter } from "../Filters/Filter";
 import { Pagination } from "../Pagination/Pagination";
 import { ProductListItem } from "../ProductListItem/ProductListItem";
 
 export const ProductList: React.FC = () => {
-  const {
-    filterName,
-    page,
-    pagesCount,
-    result,
-    setFilterName,
-    setFilterValue,
-    setPage,
-  } = useProductList();
+  const [page, setPage] = React.useState(0);
+  const [filterName, setFilterName] = React.useState<ProductFields | "">("");
+  const [filterValue, setFilterValue] = React.useState<number | string>("");
+  const { result, pagesCount, error } = useFilteredItems(getFilter(), page);
 
-  if (result.error) {
-    console.log(result.error.name, result.error.message);
-    return <p>Ошибка: {result.error.message}</p>;
+  function getFilter() {
+    if (!filterName || !filterValue) return {};
+
+    return { [filterName]: filterValue };
+  }
+
+  if (error) return <ErrorBox error={error} />;
+
+  if (!result.data) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <PulseLoader color="rgb(144 74 71)" />
+      </div>
+    );
   }
 
   return (
     <>
-      {!result.data ? (
-        <div className="flex justify-center items-center h-full">
-          <PulseLoader color="rgb(144 74 71)" />
-        </div>
-      ) : (
-        <>
-          <div
-            className={cn(
-              "flex justify-between sticky z-10 bg-surface container mx-auto",
-              isMobile() ? "top-12" : "top-0"
-            )}
-          >
-            <Filter
-              currentName={filterName}
-              onNameChange={setFilterName}
-              onValueChange={setFilterValue}
-            />
+      <div className="flex justify-center lg:justify-between sticky top-0 z-10 bg-surface container mx-auto gap-4 flex-wrap animate-appear">
+        <Filter
+          currentName={filterName}
+          onNameChange={setFilterName}
+          onValueChange={setFilterValue}
+        />
 
-            <Pagination
-              page={page}
-              setPage={setPage}
-              itemsCount={result.data?.length ?? 0}
-              pagesCount={pagesCount}
-            />
-          </div>
+        <Pagination
+          page={page}
+          setPage={setPage}
+          itemsCount={result.data?.length ?? 0}
+          pagesCount={pagesCount}
+        />
+      </div>
 
-          <ul
-            className={cn(
-              "container mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-4 p-2 animate-appear",
-              result.isPlaceholderData && "!animate-pulse opacity-15"
-            )}
-          >
-            {result.data?.map((product, i) => (
-              <ProductListItem key={i} product={product} />
-            ))}
-          </ul>
-        </>
-      )}
+      <ul
+        className={cn(
+          "container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2 animate-appear",
+          result.isPlaceholderData && "!animate-pulse opacity-15"
+        )}
+      >
+        {result.data?.map((product) => (
+          <ProductListItem key={product.id} product={product} />
+        ))}
+      </ul>
     </>
   );
 };

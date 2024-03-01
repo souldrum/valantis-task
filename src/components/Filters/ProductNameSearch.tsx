@@ -1,15 +1,11 @@
 import cn from "classnames";
 import React from "react";
 
-export const ProductInput: React.FC<{ onChange: (value: string) => void }> = ({
-  onChange,
-}) => {
+export const ProductNameSearch: React.FC<{
+  onChange: (value: string) => void;
+}> = ({ onChange }) => {
   const [value, setValue] = React.useState("");
   const [focus, setFocus] = React.useState(false);
-
-  React.useEffect(() => {
-    if (value.length > 2) onChange(value);
-  }, [value, onChange]);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
     setValue(e.target.value);
@@ -21,9 +17,9 @@ export const ProductInput: React.FC<{ onChange: (value: string) => void }> = ({
     setFocus(false);
   };
 
-  // const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-  //   if (e.key === "Enter") onChange(value);
-  // };
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === "Enter") onChange(value);
+  };
 
   return (
     <div
@@ -36,12 +32,12 @@ export const ProductInput: React.FC<{ onChange: (value: string) => void }> = ({
         className="pt-2 bg-transparent outline-none autofill:shadow-input-autocomplete w-11/12 placeholder:text-outline-variant"
         type="text"
         name="product"
-        placeholder="Начните вводить название"
+        placeholder="Введите название"
         autoComplete="off"
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        // onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDown}
         onFocus={handleFocus}
       />
     </div>
