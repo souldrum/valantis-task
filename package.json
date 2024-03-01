@@ -1,7 +1,7 @@
 {
   "name": "valantis-task",
   "private": true,
-  "homepage": " https://souldrum.github.io/valantis-task",
+  "homepage": " https://souldrum.github.io/valantis-task/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
