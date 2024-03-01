@@ -11,9 +11,10 @@ export const Footer: React.FC = () => {
         isMobile() && "mb-[env(safe-area-inset-bottom)]"
       )}
     >
-      {footerLinkData.map(({ href, Icon, target }) => (
+      {footerLinkData.map(({ href, Icon, target, title }) => (
         <a
           key={href}
+          title={title}
           className={cn(
             !isMobile() && "hover:text-outline dark:hover:text-dark-outline"
           )}
