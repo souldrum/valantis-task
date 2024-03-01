@@ -28,14 +28,16 @@ export const ProductInput: React.FC<{ onChange: (value: string) => void }> = ({
   return (
     <div
       className={cn(
-        "border border-outline rounded py-1 pl-4 min-w-input text-outline text-body-lg bg-inherit",
-        focus && "border-2"
+        "border-b border-outline-variant pb-3 pl-4 min-w-input text-outline text-body-lg bg-inherit",
+        focus && "border-b-2"
       )}
     >
       <input
-        className="py-1 bg-transparent outline-none autofill:shadow-input-autocomplete w-11/12"
+        className="pt-2 bg-transparent outline-none autofill:shadow-input-autocomplete w-11/12 placeholder:text-outline-variant"
         type="text"
         name="product"
+        placeholder="Начните вводить название"
+        autoComplete="off"
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}

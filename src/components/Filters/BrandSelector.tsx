@@ -7,7 +7,8 @@ export const BrandSelector: React.FC<{ onChange: (value: string) => void }> = ({
 }) => {
   const { isLoading, brands } = useBrands();
 
-  if (isLoading) return <p className="text-primary">Загружаем...</p>;
+  if (isLoading)
+    return <p className="text-primary animate-appear">Загружаем...</p>;
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     onChange(e.target.value);

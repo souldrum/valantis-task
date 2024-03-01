@@ -9,7 +9,7 @@ export const Select: React.FC<React.PropsWithChildren<SelectProps>> = ({
   children,
 }) => {
   return (
-    <div className="pb-2 border-outline-variant border-b w-max animate-appear">
+    <div className="pb-2 border-outline-variant border-b w-max animate-appear leading-9">
       <select
         name={name}
         className="py-2 px-3 w-max outline-none bg-transparent text-primary"
@@ -21,3 +21,4 @@ export const Select: React.FC<React.PropsWithChildren<SelectProps>> = ({
     </div>
   );
 };
+//className leading-9 for Safari!

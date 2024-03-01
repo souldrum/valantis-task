@@ -7,7 +7,8 @@ export const PriceSelector: React.FC<{ onChange: (value: number) => void }> = ({
 }) => {
   const { isLoading, prices } = usePrices();
 
-  if (isLoading) return <p className="text-primary">Загружаем...</p>;
+  if (isLoading)
+    return <p className="text-primary animate-appear">Загружаем...</p>;
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     onChange(Number(e.target.value));

@@ -104,6 +104,9 @@ export default {
       inset: {
         bottom: "auto 0 0",
       },
+      minWidth: {
+        input: "15rem",
+      },
       keyframes: {
         appear: {
           "0%": { opacity: "0" },

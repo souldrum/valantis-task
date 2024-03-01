@@ -9,7 +9,7 @@ type FooterDataType = {
 
 export const footerLinkData: FooterDataType[] = [
   {
-    href: "https://github.com/souldrum",
+    href: "https://github.com/souldrum/valantis-task",
     Icon: FaGithub,
   },
   {
