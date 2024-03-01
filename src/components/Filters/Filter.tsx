@@ -1,9 +1,10 @@
 import React from "react";
 import { ProductFields } from "../../services/valantisService.types";
+import { Button } from "../Button/Button";
+import { Select } from "../Select/Select";
 import { BrandSelector } from "./BrandSelector";
 import { PriceSelector } from "./PriceSelector";
 import { ProductInput } from "./ProductInput";
-import { Button } from "../Button/Button";
 
 type FilterProps = {
   currentName: string;
@@ -21,33 +22,30 @@ export const Filter: React.FC<FilterProps> = ({
     onValueChange("");
   };
 
-  const handleResetFilters = () => {
+  const handleReset = () => {
     onNameChange("");
     onValueChange("");
   };
 
   return (
     <div className="flex items-center gap-4">
-      <div className="pb-2 border-outline-variant border-b w-max">
-        <select
-          name="filterName"
-          className="py-2 px-3 w-max outline-none bg-transparent text-primary"
-          value={currentName}
-          onChange={handleSelect}
-        >
-          <option value="" disabled>
-            Отфильтровать
-          </option>
-          <option value="brand">По бренду</option>
-          <option value="price">По цене</option>
-          <option value="product">По названию</option>
-        </select>
-      </div>
+      <Select name="filterName" value={currentName} onChange={handleSelect}>
+        <option value="" disabled>
+          Отфильтровать
+        </option>
+        <option value="brand">По бренду</option>
+        <option value="price">По цене</option>
+        <option value="product">По названию</option>
+      </Select>
       {currentName === "brand" && <BrandSelector onChange={onValueChange} />}
       {currentName === "price" && <PriceSelector onChange={onValueChange} />}
       {currentName === "product" && <ProductInput onChange={onValueChange} />}
       {currentName && (
-        <Button color="primary" onClick={handleResetFilters}>
+        <Button
+          className="animate-appear"
+          color="primary"
+          onClick={handleReset}
+        >
           Сбросить фильтр
         </Button>
       )}

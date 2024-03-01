@@ -1,6 +1,6 @@
 import cn from "classnames";
 import React from "react";
-import { ClipLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 import { useProductList } from "../../hooks/useProductList";
 import { isMobile } from "../../isMobile/isMobile";
 import { Filter } from "../Filters/Filter";
@@ -25,13 +25,10 @@ export const ProductList: React.FC = () => {
 
   return (
     <>
-      {result.isLoading ? (
-        <ClipLoader
-          size={50}
-          color="rgb(144 74 71)"
-          // loading={result.isLoading}
-          cssOverride={{ display: "block", margin: "auto" }}
-        />
+      {!result.data ? (
+        <div className="flex justify-center items-center h-full">
+          <PulseLoader color="rgb(144 74 71)" />
+        </div>
       ) : (
         <>
           <div
