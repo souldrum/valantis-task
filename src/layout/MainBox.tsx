@@ -7,7 +7,7 @@ export const MainBox: React.FC<
   return (
     <div
       className={cn(
-        "bg-surface-container-lowest dark:bg-dark-surface-container p-4 shadow-elevation-1 animate-appear rounded-lg sm:rounded-3xl",
+        "bg-surface-container-lowest p-4 shadow-elevation-1 animate-appear rounded-lg sm:rounded-3xl",
         className
       )}
     >
